@@ -12,9 +12,9 @@ let read_file_rec =
     in
         read_lines []
 
-let lines = read_file_rec;;
+let lines = read_file_rec
 
-let part1 =
+let solve_part1 =
     lines
     |> List.map (String.split_on_char ' ')
     |> List.map (List.filter (( <> ) ""))
@@ -27,9 +27,8 @@ let part1 =
       (fun a b -> abs (a - b))
       (List.sort Int.compare a) (List.sort Int.compare b)
     |> List.fold_left ( + ) 0
-;;
 
-let part2 =
+let solve_part2 =
     lines
     |> List.map (String.split_on_char ' ')
     |> List.map (List.filter (( <> ) ""))
@@ -41,7 +40,9 @@ let part2 =
       (List.map
          (fun x -> x * List.length (List.filter (( = ) x) (List.map snd pairs)))
          (List.map fst pairs))
-;;
 
-Printf.printf "part1: %d\n" part1;
-Printf.printf "part2: %d\n" part2;
+let print_results part1 part2 =
+    Printf.printf "part1: %d\n" part1;
+    Printf.printf "part2: %d\n" part2
+
+let () = print_results solve_part1 solve_part2
