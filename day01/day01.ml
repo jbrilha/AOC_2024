@@ -1,7 +1,5 @@
-let file = Sys.argv.(1)
-
-let read_file_rec =
-    let ic = open_in file in
+let lines =
+    let ic = open_in Sys.argv.(1) in
     let rec read_lines acc =
         try
           let line = input_line ic in
@@ -11,8 +9,6 @@ let read_file_rec =
           List.rev acc
     in
         read_lines []
-
-let lines = read_file_rec
 
 let solve_part1 =
     lines
