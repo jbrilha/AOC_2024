@@ -15,6 +15,7 @@ infix-precedence = parens
 let-binding-indent = 4
 margin = 80
 match-indent = 4
+sequence-blank-line = compact
 space-around-arrays = false
 space-around-lists = false
 space-around-records = false
