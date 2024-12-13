@@ -14,27 +14,6 @@ let is_digit = function
     | '0' .. '9' -> true
     | _ -> false
 
-let do_mul1 str cursor =
-    (* Printf.printf "str: <%s>\n" str; *)
-    let len = String.length str in
-    let sum =
-        if len < 3 || len > 7 then
-          None
-        else
-          let parts = String.split_on_char ',' str in
-              match parts with
-              | [l; r] -> (
-                  try
-                    let left = int_of_string l in
-                    let right = int_of_string r in
-                        Some (left, right)
-                  with Failure _ -> None)
-              | _ -> None
-    in
-        match sum with
-        | Some (left, right) -> (cursor + len, left * right)
-        | None -> (cursor + 1, 0)
-
 let do_mul str cursor =
     let len = String.length str in
     let sum =
@@ -64,7 +43,7 @@ let add_muls line =
           let cursor = pos + 4 in
               if cursor + 3 <= len && is_digit (String.get line cursor) then
                 let next_pos, mul_sum =
-                    do_mul1
+                    do_mul
                       (String.sub line cursor
                          (String.index_from line cursor ')' - cursor))
                       cursor
